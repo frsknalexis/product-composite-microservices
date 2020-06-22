@@ -30,11 +30,13 @@ public class HttpErrorInfo implements Serializable {
 	
 	private String message;
 	
-	public int getStatus() {
-		return httpStatus.value();
+	public Integer getStatus() {
+		Supplier<Integer> getStatus = () -> Integer.valueOf(httpStatus.value());
+		return getStatus.get();
 	}
 	
-	public Supplier<Integer> getStatus = () -> Integer.valueOf(httpStatus.value());
-	
-	public Supplier<String> getError = () -> httpStatus.getReasonPhrase();
+	public String getError() {
+		Supplier<String> getError = () -> httpStatus.getReasonPhrase();
+		return getError.get();
+	}
 }
