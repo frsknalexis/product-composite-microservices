@@ -24,12 +24,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProduct(Integer productId) {
 		log.info("/product return the found product for productId={}", productId);
+		
 		if (productId < 1) {
 			throw new InvalidInputException("Invalid productId: " + productId);
 		}
+		
 		if (productId == 13) {
 			throw new NotFoundException("No product found for productId: " + productId);
 		}
+		
 		Product product = Product.builder()
 						.productId(productId)
 						.name("name - " + productId)
